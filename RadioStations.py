@@ -5,19 +5,19 @@ Created on Tue Feb 21 14:07:02 2017
 @author: jack.werner1
 """
 
-#%%
+#%% Cities 97
 import urllib
 from bs4 import BeautifulSoup
 
+#%%
 cities97 = "http://cities97.iheart.com/music/recently-played/"
 
 cities97_url = urllib.request.urlopen(cities97).read()
 c97 = BeautifulSoup(cities97_url, "lxml")
 
 songs = c97.findAll(attrs={"class":"playlist-track-container"})
-#%%
 
-songList = []
+cities97_songs = []
 
 for i in songs:
     song_name = i.findAll(attrs={"class":"track-title station-custom-link-hover"})[0].string
@@ -26,5 +26,5 @@ for i in songs:
     
     oneList = [song_name, artist_name, time]
 
-    songList.append(oneList)
+    cities97_songs.append(oneList)
 #%%
